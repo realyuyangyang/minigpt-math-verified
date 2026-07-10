@@ -18,4 +18,11 @@ This project reproduces a decoder-only Transformer from scratch in PyTorch and v
 
 ## Status
 
-Work in progress.
+- [x] Repository initialized
+- [x] Project structure created
+- [x] Basic configuration added
+- [ ] Minimal tokenizer and dataset loader
+- [ ] MiniGPT model implementation
+- [ ] Training loop
+- [ ] Text generation
+- [ ] Mathematical verification experiments
