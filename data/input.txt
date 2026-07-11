@@ -1,0 +1,3 @@
+hello transformer.
+this is a tiny dataset for minigpt.
+we are training a small decoder-only language model.
