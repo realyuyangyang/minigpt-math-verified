@@ -16,8 +16,8 @@ class GPTConfig:
     # training
     batch_size: int = 32
     learning_rate: float = 3e-4
-    max_iters: int = 3000
-    eval_interval: int = 300
+    max_iters: int =1000
+    eval_interval: int = 100
     eval_iters: int = 100
 
     # generation
