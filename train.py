@@ -93,7 +93,7 @@ os.makedirs("assets", exist_ok=True)
 torch.save(
     {
         "model_state_dict": model.state_dict(),
-        "config": config,
+        "config": config.__dict__,
     },
     "results/minigpt_checkpoint.pt",
 )
