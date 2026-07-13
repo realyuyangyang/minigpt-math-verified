@@ -2,12 +2,14 @@
 
 ## Example 1
 
-Prompt:
+**Prompt:**
 
 ```text
 hello
+```
 
-Generated text:
+**Generated text:**
 
 ```text
 hellons a stentence is al works for a geraly thin o word “bank” rexample - the Transformer compares it ens tantion smodel of inean stanention, for eacr ganes. These are represented gentence. representa
+```
