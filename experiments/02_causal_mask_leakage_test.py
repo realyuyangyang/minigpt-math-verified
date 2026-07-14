@@ -67,6 +67,7 @@ def test_future_token_leakage():
     seq_len = 16
     prefix_len = 8
 
+    # Step 1: Create the first input sequence.
     x1 = torch.randint(
         low=0,
         high=config.vocab_size,
@@ -74,8 +75,10 @@ def test_future_token_leakage():
         device=device,
     )
 
+    # Step 2: Copy x1 to x2.
     x2 = x1.clone()
 
+    # Step 3: Keep the prefix unchanged, but replace the future tokens.
     x2[:, prefix_len:] = torch.randint(
         low=0,
         high=config.vocab_size,
@@ -83,14 +86,25 @@ def test_future_token_leakage():
         device=device,
     )
 
+    print("\nTest 2: Future Token Perturbation")
+    print("x1:", x1[0].tolist())
+    print("x2:", x2[0].tolist())
+    print("shared prefix x1:", x1[0, :prefix_len].tolist())
+    print("shared prefix x2:", x2[0, :prefix_len].tolist())
+    print("changed future x1:", x1[0, prefix_len:].tolist())
+    print("changed future x2:", x2[0, prefix_len:].tolist())
+
     with torch.no_grad():
         logits1, _ = model(x1)
         logits2, _ = model(x2)
 
+    # Prefix logits should be identical.
+    # If they differ, future tokens leaked into previous positions.
     prefix_diff = (
         logits1[:, :prefix_len, :] - logits2[:, :prefix_len, :]
     ).abs().max().item()
 
+    # Suffix logits are allowed to differ because future tokens were changed.
     suffix_diff = (
         logits1[:, prefix_len:, :] - logits2[:, prefix_len:, :]
     ).abs().max().item()
