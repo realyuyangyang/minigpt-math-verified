@@ -12,6 +12,7 @@ class GPTConfig:
     n_head: int = 4
     n_embd: int = 128
     dropout: float = 0.1
+    use_position_embedding: bool = True
 
     # training
     batch_size: int = 32
